@@ -1,139 +1,145 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evil Cuy Studios | Official Site</title>
+    <title>Evil Cuy Studios | Portafolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap');
 
         body { 
-            background-color: #0a0a0a; 
-            color: #e0e0e0; 
+            background-color: #0d0d0d; 
+            color: #aaa; 
             font-family: 'Fira Code', monospace; 
-            text-align: center; 
-            padding: 50px 20px;
+            line-height: 1.6;
             margin: 0;
+            padding: 40px 20px; /* Reducido para móvil */
+            display: flex;
+            justify-content: center;
         }
 
-        /* Contenedor con efecto Neón sutil */
-        .container { 
-            max-width: 800px; 
-            margin: auto; 
-            border: 1px solid #1a1a1a; 
-            padding: 40px 20px; 
-            border-radius: 15px; 
-            background: #111111;
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.05);
+        .content { max-width: 700px; width: 100%; }
+
+        header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+            border-bottom: 1px solid #1a1a1a; 
+            padding-bottom: 30px; 
         }
 
-        /* Título con Neón Rojo */
-        h1 { 
-            color: #ff4d4d; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            text-shadow: 0 0 10px rgba(255, 77, 77, 0.7), 0 0 20px rgba(255, 77, 77, 0.3);
+        .studio-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* Para que los emojis bajen si no hay espacio */
+            gap: 10px;
             margin-bottom: 10px;
         }
 
-        .slogan {
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
+        h1 { 
+            color: #ff4d4d; 
+            font-size: 1.5rem; /* Ajustado para móvil */
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin: 0; 
+            font-weight: 700;
         }
 
-        h3 { color: #ff4d4d; border-bottom: 1px solid #333; display: inline-block; padding-bottom: 5px; }
+        .tagline { color: #444; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
 
-        /* Lista de Apps con estilo Terminal */
-        .apps-list { text-align: left; display: inline-block; margin-top: 20px; width: 100%; max-width: 500px; }
-        
-        .app-item { 
-            margin-bottom: 15px; 
-            padding: 15px; 
-            border-left: 2px solid #ff4d4d; 
-            background: #161616;
-            transition: 0.3s;
-        }
-
-        .app-item:hover {
-            background: #1f1f1f;
-            box-shadow: -5px 0 15px rgba(255, 77, 77, 0.2);
-            transform: translateX(5px);
-        }
-
-        .app-item strong { color: #ff4d4d; }
-
-        /* Botón WhatsApp Estilo Neón Verde */
-        .btn-wa {
-            background-color: transparent; 
-            color: #25D366; 
-            padding: 15px 25px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            display: inline-flex; 
-            align-items: center; 
+        .dev-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
-            border: 2px solid #25D366;
-            box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
-            transition: all 0.3s;
-            margin-top: 20px;
         }
 
-        .btn-wa:hover {
-            background-color: #25D366;
-            color: #000;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
-        }
+        .dev-name { color: #eee; font-weight: 600; font-size: 1rem; }
+        .dev-role { color: #666; font-style: italic; font-size: 0.8rem; }
 
-        footer { margin-top: 60px; font-size: 0.75em; color: #444; }
+        section { margin-bottom: 40px; }
+        h2 { font-size: 0.75rem; color: #333; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-left: 2px solid #ff4d4d; padding-left: 10px; }
 
-        /* El secreto camuflado */
-        .secret {
-            color: #161616; /* Casi igual al fondo para que sea difícil de ver */
+        .project-item {
             display: block;
-            margin-top: 10px;
-            letter-spacing: 5px;
-            transition: color 0.5s;
+            text-decoration: none;
+            color: #999;
+            padding: 15px 0; /* Más espacio para tocar con el dedo */
+            transition: 0.3s;
+            border-bottom: 1px solid #141414; /* Separador sutil en móvil */
         }
 
-        .secret:hover { color: #222; } /* Se revela un poquito más al pasar el mouse */
+        .project-item span { 
+            display: block; /* En móvil, la descripción va abajo */
+            font-size: 0.75rem; 
+            color: #444; 
+            margin-top: 4px;
+        }
 
-        a { color: #555; text-decoration: none; font-size: 0.9em; }
-        a:hover { color: #ff4d4d; }
+        .footer-nav { 
+            margin-top: 40px; 
+            padding-top: 20px; 
+            border-top: 1px solid #1a1a1a; 
+            display: flex; 
+            flex-direction: column; /* Pilas en móvil */
+            gap: 15px;
+            align-items: center; 
+        }
+
+        /* AJUSTES PARA PANTALLAS GRANDES */
+        @media (min-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .project-item span { display: inline; margin-left: 8px; margin-top: 0; }
+            .footer-nav { flex-direction: row; justify-content: space-between; }
+            .project-item { border-bottom: 1px solid transparent; }
+        }
+
+        .secret { 
+            color: #111;
+            font-size: 0.7rem; 
+            letter-spacing: 5px; 
+            text-align: center;
+            margin-top: 30px;
+            cursor: default;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔥🐹 Evil Cuy Studios 🐹🔥</h1>
-        <p class="slogan">Desarrollando el código fuente de una gran historia.</p>
-    
-        <h3>🐹 cd:/ PROYECTOS_EN_EJECUCIÓN 🐹</h3>
-        <div class="apps-list">
-            <div class="app-item"><strong>Aegis:</strong> Consulta de datos públicos.</div>
-            <div class="app-item"><strong>MS-IA Consultas:</strong> Herramienta avanzada de búsqueda de información pública.</div>
-            <div class="app-item"><strong>Tercio de Banderillas:</strong> Comunidad para aficionados taurinos.</div>
-            <div class="app-item"><strong>Proyecto Iris:</strong> Juego de misterio, terror y puzzles.</div>
-            <div class="app-item"><strong>Digital Diva Wallpapers:</strong> App exclusiva para los fans de Hatsune Miku y Vocaloid.</div>            
-        </div>
-        
-        <div style="margin-top: 40px;">
-            <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank" class="btn-wa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" height="20" alt="WA">
-                ACCEDER AL CANAL
-            </a>
-            <p style="font-size: 0.75em; color: #555; margin-top: 15px;">Logs de actualización y reportes de Proyecto Iris.</p>
+
+    <div class="content">
+        <header>
+            <div class="studio-name">
+                <span>🔥🐹</span>
+                <h1>Evil Cuy Studios</h1>
+                <span>🐹🔥</span>
+            </div>
+            <div class="tagline">Laboratorio de Software & Desarrollo Independiente</div>
+
+            <div class="dev-info">
+                <span class="dev-name">Procyon</span>
+                <span style="color: #222;">/</span>
+                <span class="dev-role">Indie Dev</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Exploraciones y Herramientas</h2>
+            <a href="#" class="project-item">📄 Word to PDF <span>/ Automación Word a PDF</span></a>
+            <a href="#" class="project-item">🔄 Negative Suite <span>/ Ingeniería Inversa PDF</span></a>
+            <a href="#" class="project-item">🤖 MS-IA Consultas <span>/ Búsqueda con IA</span></a>
+            <a href="#" class="project-item">🛡️ Aegis <span>/ Transparencia de Datos</span></a>
+            <a href="#" class="project-item">👁️ Proyecto Iris <span>/ Misterio & Puzzles</span></a>
+            <a href="#" class="project-item">🎤 Digital Diva <span>/ Recursos Vocaloid</span></a>
+            <a href="#" class="project-item">🐂 Tercio de Banderillas <span>/ Portal Cultural</span></a>
+        </section>
+
+        <div class="footer-nav">
+            <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank">Canal de Novedades</a>
+            <a href="privacy.html">Privacidad</a>
         </div>
 
-        <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 20px;">
-            <a href="privacy.html">POLÍTICA_DE_PRIVACIDAD</a>
-        </div>
+        <div class="secret">.-/--</div>
     </div>
 
-    <footer>
-        &copy; 2025 Evil Cuy Studios. Compiled by <strong>Procyon</strong>.
-        <span class="secret">.-/--</span>
-    </footer>
 </body>
 </html>
