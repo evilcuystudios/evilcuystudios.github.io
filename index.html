@@ -1,106 +1,199 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evil Cuy Studios | Portafolio</title>
+    <title>EVIL CUY STUDIOS | Portafolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap');
 
-        body { 
-            background-color: #0d0d0d; 
-            color: #aaa; 
-            font-family: 'Fira Code', monospace; 
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px; /* Reducido para móvil */
-            display: flex;
-            justify-content: center;
+        :root {
+            --neon-red: #ff003c;
+            --neon-blue: #00f3ff;
+            --neon-green: #00ff41;
+            --bg-dark: #050505;
+            --terminal-gray: #1a1a1a;
         }
 
-        .content { max-width: 700px; width: 100%; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: #d1d1d1; 
+            font-family: 'Fira Code', monospace; 
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Líneas de escaneo CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 10;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .content { max-width: 750px; width: 100%; position: relative; z-index: 2; }
 
         header { 
             text-align: center; 
-            margin-bottom: 40px; 
-            border-bottom: 1px solid #1a1a1a; 
-            padding-bottom: 30px; 
-        }
-
-        .studio-name {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap; /* Para que los emojis bajen si no hay espacio */
-            gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 50px; 
+            border: 1px solid var(--terminal-gray);
+            padding: 40px 20px;
+            background: rgba(10, 10, 10, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 1);
         }
 
         h1 { 
-            color: #ff4d4d; 
-            font-size: 1.5rem; /* Ajustado para móvil */
+            color: var(--neon-red); 
+            font-size: 1.6rem;
             text-transform: uppercase; 
             letter-spacing: 3px; 
             margin: 0; 
             font-weight: 700;
+            text-shadow: 0 0 15px var(--neon-red);
         }
 
-        .tagline { color: #444; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
-
-        .dev-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .tagline { 
+            color: var(--neon-blue); 
+            font-size: 0.75rem; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            margin: 15px 0 25px 0;
+            opacity: 0.8;
         }
 
-        .dev-name { color: #eee; font-weight: 600; font-size: 1rem; }
-        .dev-role { color: #666; font-style: italic; font-size: 0.8rem; }
+        .dev-status {
+            display: inline-flex;
+            border: 1px solid var(--neon-blue);
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            color: var(--neon-blue);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .dev-status b { color: #fff; margin-right: 8px; }
 
         section { margin-bottom: 40px; }
-        h2 { font-size: 0.75rem; color: #333; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-left: 2px solid #ff4d4d; padding-left: 10px; }
+        
+        h2 { 
+            font-size: 0.85rem; 
+            color: var(--neon-green); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-bottom: 25px; 
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before { content: "> "; margin-right: 10px; }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
         .project-item {
-            display: block;
             text-decoration: none;
             color: #999;
-            padding: 15px 0; /* Más espacio para tocar con el dedo */
-            transition: 0.3s;
-            border-bottom: 1px solid #141414; /* Separador sutil en móvil */
+            padding: 20px;
+            background: rgba(15, 15, 15, 0.7);
+            border: 1px solid var(--terminal-gray);
+            transition: 0.2s all ease-in-out;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-item:hover {
+            border-color: var(--neon-red);
+            background: rgba(255, 0, 60, 0.08);
+            transform: translateX(8px);
+            color: #fff;
+        }
+
+        .project-info { max-width: 80%; }
+
+        .project-item b { 
+            color: #eee; 
+            font-size: 1rem; 
+            display: block;
+            margin-bottom: 5px;
         }
 
         .project-item span { 
-            display: block; /* En móvil, la descripción va abajo */
-            font-size: 0.75rem; 
-            color: #444; 
-            margin-top: 4px;
+            font-size: 0.8rem; 
+            color: #555; 
+            font-style: italic;
+        }
+
+        /* Badge dinámico para extensiones */
+        .badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border: 1px solid #333;
+            color: #444;
+            transition: 0.3s;
+        }
+
+        .project-item:hover .badge {
+            border-color: var(--neon-red);
+            color: var(--neon-red);
+            text-shadow: 0 0 5px var(--neon-red);
         }
 
         .footer-nav { 
-            margin-top: 40px; 
-            padding-top: 20px; 
-            border-top: 1px solid #1a1a1a; 
+            margin-top: 60px; 
             display: flex; 
-            flex-direction: column; /* Pilas en móvil */
-            gap: 15px;
-            align-items: center; 
+            justify-content: space-between;
+            font-size: 0.8rem;
         }
 
-        /* AJUSTES PARA PANTALLAS GRANDES */
-        @media (min-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .project-item span { display: inline; margin-left: 8px; margin-top: 0; }
-            .footer-nav { flex-direction: row; justify-content: space-between; }
-            .project-item { border-bottom: 1px solid transparent; }
+        .footer-nav a {
+            color: var(--neon-green);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .footer-nav a:hover { border-color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+
+        .secret-container {
+            margin-top: 60px;
+            text-align: center;
+            border-top: 1px dashed #222;
+            padding-top: 30px;
+        }
+
+        .motto {
+            color: #333;
+            font-size: 0.7rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
         }
 
         .secret { 
             color: #111;
-            font-size: 0.7rem; 
-            letter-spacing: 5px; 
-            text-align: center;
-            margin-top: 30px;
+            font-size: 0.9rem; 
+            letter-spacing: 10px; 
+            transition: 0.5s;
             cursor: default;
+        }
+
+        .secret:hover { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.2rem; }
+            .project-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .badge { align-self: flex-end; }
         }
     </style>
 </head>
@@ -109,36 +202,87 @@
     <div class="content">
         <header>
             <div class="studio-name">
-                <span>🔥🐹</span>
-                <h1>Evil Cuy Studios</h1>
-                <span>🐹🔥</span>
+                <h1>🐹 EVIL CUY STUDIOS 🐹</h1>
             </div>
             <div class="tagline">Laboratorio de Software & Desarrollo Independiente</div>
 
-            <div class="dev-info">
-                <span class="dev-name">Procyon</span>
-                <span style="color: #222;">/</span>
-                <span class="dev-role">Indie Dev</span>
+            <div class="dev-status">
+                <b>🦝 CEO:</b> Procyon // Lead Indie Dev
             </div>
         </header>
 
         <section>
-            <h2>Exploraciones y Herramientas</h2>
-            <a href="#" class="project-item">📄 Word to PDF <span>/ Automación Word a PDF</span></a>
-            <a href="#" class="project-item">🔄 Negative Suite <span>/ Ingeniería Inversa PDF</span></a>
-            <a href="#" class="project-item">🤖 MS-IA Consultas <span>/ Búsqueda con IA</span></a>
-            <a href="#" class="project-item">🛡️ Aegis <span>/ Transparencia de Datos</span></a>
-            <a href="#" class="project-item">👁️ Proyecto Iris <span>/ Misterio & Puzzles</span></a>
-            <a href="#" class="project-item">🎤 Digital Diva <span>/ Recursos Vocaloid</span></a>
-            <a href="#" class="project-item">🐂 Tercio de Banderillas <span>/ Portal Cultural</span></a>
+            <h2>SISTEMA_DE_ARCHIVOS</h2>
+            <div class="project-list">
+                
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>🔄 Negative Suite</b> 
+                        <span>Ingeniería inversa aplicada a flujos PDF y MS OFFICE.</span>
+                    </div>
+                    <div class="badge">.EXE</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>📄 Word to PDF</b> 
+                        <span>Morder .docx hasta convertirlos en .pdf (Zero-Install).</span>
+                    </div>
+                    <div class="badge">.EXE</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>📄 EXCEL to PDF</b> 
+                        <span>Morder .xlsx hasta convertirlos en .pdf (Zero-Install).</span>
+                    </div>
+                    <div class="badge">.EXE</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>📄 PPT to PDF</b> 
+                        <span>Morder .pptx hasta convertirlos en .pdf (Zero-Install).</span>
+                    </div>
+                    <div class="badge">.EXE</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>👁️ Proyecto Iris</b> 
+                        <span>Misterio, puzzles y archivos encriptados.</span>
+                    </div>
+                    <div class="badge">.APK</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>🎤 Digital Diva Wallpapers</b> 
+                        <span>Recursos avanzados para Vocaloid.</span>
+                    </div>
+                    <div class="badge">.APK</div>
+                </a>
+
+                <a href="#" class="project-item">
+                    <div class="project-info">
+                        <b>🐂 Tercio de Banderillas</b> 
+                        <span>Portal cultural y exploración de datos.</span>
+                    </div>
+                    <div class="badge">.APK</div>
+                </a>
+
+            </div>
         </section>
 
         <div class="footer-nav">
-            <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank">Canal de Novedades</a>
-            <a href="privacy.html">Privacidad</a>
+            <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank">[ CANAL_DE_NOVEDADES ]</a>
+            <a href="privacy.html">[ PRIVACIDAD ]</a>
         </div>
 
-        <div class="secret">.-/--</div>
+        <div class="secret-container">
+            <div class="motto">EN EL MORDER ESTÁ EL PODER</div>
+            <div class="secret">.-/--</div>
+        </div>
     </div>
 
 </body>
