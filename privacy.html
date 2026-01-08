@@ -1,10 +1,673 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Política de Privacidad - Evil Cuy Studios</title></head>
-<body style="font-family:sans-serif; padding:40px; line-height:1.6;">
-    <h1>Política de Privacidad</h1>
-    <p>En <strong>Evil Cuy Studios</strong>, valoramos tu privacidad. Nuestras aplicaciones (Aegis, MS-IA Consultas, Tercio de Banderillas y Proyecto Iris) no recolectan, almacenan ni comparten datos personales de los usuarios sin su consentimiento explícito.</p>
-    <p>Si alguna de nuestras apps muestra publicidad o utiliza servicios de terceros (como Google Play Services), estos pueden recolectar identificadores anónimos para fines estadísticos.</p>
-    <p>Para dudas, contáctanos en: <strong>evilcuystudios@gmail.com</strong></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | EVIL CUY STUDIOS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap');
+
+        :root {
+            --neon-red: #ff003c;
+            --neon-blue: #00f3ff;
+            --neon-green: #00ff41;
+            --bg-dark: #050505;
+            --terminal-gray: #1a1a1a;
+            --card-bg: rgba(15, 15, 15, 0.7);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(to bottom, #000000, #0a0a0a);
+            color: #d1d1d1;
+            font-family: 'Fira Code', monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* Efecto CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: 9;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.95; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--neon-green);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-shadow: 0 0 10px var(--neon-green);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: var(--neon-red);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px var(--neon-red);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin: 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--neon-blue);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .last-updated {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            color: var(--neon-green);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-gray);
+            padding: 40px 35px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: var(--neon-blue);
+            transition: height 0.3s ease;
+        }
+
+        .content-section:hover::before {
+            height: 100%;
+        }
+
+        .content-section:hover {
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.1);
+        }
+
+        h2 {
+            color: var(--neon-green);
+            font-size: 1.3rem;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        h2::before {
+            content: '>';
+            color: var(--neon-red);
+            margin-right: 12px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        h3 {
+            color: #fff;
+            font-size: 1.05rem;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        p {
+            color: #aaa;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Lista de aplicaciones */
+        .app-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .app-item {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 15px;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .app-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Lista de puntos */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        ul li {
+            color: #999;
+            padding: 10px 0 10px 30px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            font-size: 1.2rem;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: rgba(255, 0, 60, 0.05);
+            border-left: 3px solid var(--neon-red);
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #ddd;
+        }
+
+        /* Info box */
+        .info-box {
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 20px 25px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-box::before {
+            content: 'ℹ️';
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-box p {
+            margin: 0;
+        }
+
+        /* Contact section */
+        .contact-box {
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-gray);
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-box h2 {
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--neon-blue);
+            font-size: 0.95rem;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--terminal-gray);
+        }
+
+        .footer-logo {
+            color: #333;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer-secret {
+            color: #111;
+            font-size: 0.9rem;
+            letter-spacing: 10px;
+            transition: all 0.5s ease;
+            cursor: default;
+        }
+
+        .footer-secret:hover {
+            color: var(--neon-red);
+            text-shadow: 0 0 20px var(--neon-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 15px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+            }
+
+            .app-list {
+                grid-template-columns: 1fr;
+            }
+
+            .back-link {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+                display: inline-flex;
+            }
+        }
+
+        /* Tabla de datos */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--terminal-gray);
+        }
+
+        .data-table th {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .data-table td {
+            color: #aaa;
+        }
+
+        .data-table tr:hover {
+            background: rgba(0, 243, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <div class="logo">🐹 EVIL CUY STUDIOS 🐹</div>
+            <h1>Política de Privacidad</h1>
+            <div class="subtitle">Transparencia y Seguridad de Datos</div>
+            <div class="last-updated">Última actualización: Enero 2024</div>
+        </header>
+
+        <!-- Introducción -->
+        <div class="content-section">
+            <h2>Compromiso con tu Privacidad</h2>
+            <p>En <strong>Evil Cuy Studios</strong>, la privacidad de nuestros usuarios es una prioridad fundamental. Esta política describe cómo manejamos la información en todas nuestras aplicaciones y servicios.</p>
+            
+            <div class="info-box">
+                <p><strong>Principio básico:</strong> No recopilamos, almacenamos ni compartimos datos personales identificables sin el consentimiento explícito del usuario.</p>
+            </div>
+
+            <p>Esta política se aplica a todas las aplicaciones desarrolladas por Evil Cuy Studios, incluyendo pero no limitado a:</p>
+
+            <div class="app-list">
+                <div class="app-item">🐂 Tercio de Banderillas</div>
+                <div class="app-item">👁️ Proyecto Iris</div>
+                <div class="app-item">🎤 Digital Diva Wallpapers</div>
+                <div class="app-item">🔄 Negative Converter Suite</div>
+                <div class="app-item">📄 Convertidores Office-PDF</div>
+            </div>
+        </div>
+
+        <!-- Recopilación de datos -->
+        <div class="content-section">
+            <h2>Información que NO Recopilamos</h2>
+            <p>Nuestras aplicaciones están diseñadas bajo el principio de <strong>mínima recopilación de datos</strong>. No recopilamos:</p>
+            <ul>
+                <li>Nombres, direcciones de correo electrónico o números de teléfono</li>
+                <li>Ubicación GPS precisa o historial de ubicaciones</li>
+                <li>Contactos, mensajes o registros de llamadas</li>
+                <li>Fotografías o archivos multimedia personales (excepto los procesados localmente)</li>
+                <li>Información financiera o de tarjetas de crédito</li>
+                <li>Identificadores biométricos (huellas dactilares, reconocimiento facial)</li>
+                <li>Historial de navegación fuera de nuestras aplicaciones</li>
+            </ul>
+        </div>
+
+        <!-- Datos que sí se recopilan -->
+        <div class="content-section">
+            <h2>Datos Anónimos y Servicios de Terceros</h2>
+            
+            <h3>1. Identificadores Anónimos</h3>
+            <p>Algunas de nuestras aplicaciones pueden utilizar servicios de terceros que recopilan identificadores anónimos con propósitos específicos:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Propósito</th>
+                        <th>Datos Recopilados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Play Services</td>
+                        <td>Funcionalidad de la app</td>
+                        <td>ID de publicidad anónimo</td>
+                    </tr>
+                    <tr>
+                        <td>Firebase Analytics</td>
+                        <td>Estadísticas de uso</td>
+                        <td>Eventos anónimos de uso</td>
+                    </tr>
+                    <tr>
+                        <td>AdMob (si aplica)</td>
+                        <td>Publicidad contextual</td>
+                        <td>Preferencias de anuncios</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Datos de Uso Agregados</h3>
+            <p>Podemos recopilar información agregada y anónima sobre cómo se utilizan nuestras aplicaciones para:</p>
+            <ul>
+                <li>Mejorar el rendimiento y estabilidad</li>
+                <li>Identificar y corregir errores</li>
+                <li>Analizar patrones de uso para optimizar funcionalidades</li>
+                <li>Generar estadísticas generales sin identificar usuarios individuales</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Importante:</strong> Todos los datos recopilados son completamente anónimos y no pueden ser utilizados para identificar a usuarios individuales.</p>
+            </div>
+        </div>
+
+        <!-- Procesamiento local -->
+        <div class="content-section">
+            <h2>Procesamiento Local de Archivos</h2>
+            <p>Nuestras aplicaciones de conversión y manipulación de documentos (como Negative Suite, Word to PDF, Excel to PDF, PPT to PDF) procesan archivos <strong>exclusivamente en tu dispositivo</strong>.</p>
+
+            <h3>Garantías de Seguridad:</h3>
+            <ul>
+                <li>Los archivos nunca se cargan a servidores externos</li>
+                <li>Todo el procesamiento ocurre localmente en tu dispositivo</li>
+                <li>Los archivos temporales se eliminan automáticamente después del procesamiento</li>
+                <li>No se crea ningún registro o respaldo de los documentos procesados</li>
+                <li>El contenido de tus archivos nunca sale de tu dispositivo</li>
+            </ul>
+
+            <div class="info-box">
+                <p>Este enfoque "zero-cloud" garantiza que tus documentos confidenciales permanezcan completamente privados y bajo tu control.</p>
+            </div>
+        </div>
+
+        <!-- Permisos -->
+        <div class="content-section">
+            <h2>Permisos de Aplicaciones</h2>
+            <p>Nuestras aplicaciones solo solicitan los permisos mínimos necesarios para funcionar:</p>
+
+            <h3>Permisos Comunes:</h3>
+            <ul>
+                <li><strong>Almacenamiento:</strong> Para leer y guardar archivos procesados (solo apps de conversión)</li>
+                <li><strong>Internet:</strong> Para mostrar anuncios y actualizar contenido (cuando aplique)</li>
+                <li><strong>Estado de red:</strong> Para verificar conectividad y optimizar descargas</li>
+            </ul>
+
+            <h3>Permisos Especiales (por aplicación):</h3>
+            <p>Cada aplicación solo solicita permisos adicionales cuando son absolutamente necesarios para su funcionalidad específica. Puedes revisar los permisos detallados en la página de cada app en Google Play Store.</p>
+        </div>
+
+        <!-- Publicidad -->
+        <div class="content-section">
+            <h2>Publicidad y Monetización</h2>
+            <p>Algunas aplicaciones gratuitas pueden mostrar publicidad para sostener el desarrollo. En estos casos:</p>
+            <ul>
+                <li>Utilizamos redes publicitarias respetables (Google AdMob)</li>
+                <li>Los anuncios son contextuales, no basados en perfiles personales detallados</li>
+                <li>Puedes optar por no participar en publicidad personalizada desde la configuración de tu dispositivo</li>
+                <li>No compartimos información personal con anunciantes</li>
+                <li>Versiones premium sin publicidad están disponibles cuando es posible</li>
+            </ul>
+
+            <div class="info-box">
+                <p>Para gestionar tus preferencias de publicidad, visita la configuración de Google Ads en tu dispositivo Android.</p>
+            </div>
+        </div>
+
+        <!-- Seguridad -->
+        <div class="content-section">
+            <h2>Seguridad de Datos</h2>
+            <p>Implementamos medidas de seguridad apropiadas para proteger cualquier información que manejemos:</p>
+            <ul>
+                <li>Cifrado de datos en tránsito cuando es aplicable</li>
+                <li>Almacenamiento seguro local en el dispositivo</li>
+                <li>Actualizaciones regulares de seguridad</li>
+                <li>Cumplimiento con las mejores prácticas de desarrollo seguro</li>
+                <li>Auditorías periódicas de código</li>
+            </ul>
+        </div>
+
+        <!-- Menores de edad -->
+        <div class="content-section">
+            <h2>Protección de Menores</h2>
+            <p>Nuestras aplicaciones no están dirigidas específicamente a menores de 13 años. No recopilamos conscientemente información personal de niños.</p>
+            
+            <div class="highlight-box">
+                <p>Si eres padre o tutor y crees que tu hijo nos ha proporcionado información personal, contáctanos inmediatamente para que podamos tomar las medidas apropiadas.</p>
+            </div>
+        </div>
+
+        <!-- Tus derechos -->
+        <div class="content-section">
+            <h2>Tus Derechos</h2>
+            <p>Como usuario de nuestras aplicaciones, tienes derecho a:</p>
+            <ul>
+                <li><strong>Acceso:</strong> Conocer qué datos (si los hay) tenemos sobre ti</li>
+                <li><strong>Rectificación:</strong> Corregir información incorrecta</li>
+                <li><strong>Eliminación:</strong> Solicitar la eliminación de tus datos</li>
+                <li><strong>Portabilidad:</strong> Recibir tus datos en formato legible</li>
+                <li><strong>Objeción:</strong> Oponerte al procesamiento de ciertos datos</li>
+                <li><strong>Retirar consentimiento:</strong> En cualquier momento, cuando el procesamiento se base en consentimiento</li>
+            </ul>
+
+            <p>Para ejercer cualquiera de estos derechos, contáctanos a través de los canales indicados abajo.</p>
+        </div>
+
+        <!-- Cambios en la política -->
+        <div class="content-section">
+            <h2>Actualizaciones de esta Política</h2>
+            <p>Podemos actualizar esta política de privacidad ocasionalmente para reflejar cambios en nuestras prácticas o por requisitos legales. Te notificaremos de cambios significativos mediante:</p>
+            <ul>
+                <li>Actualización de la fecha en la parte superior de esta política</li>
+                <li>Notificación dentro de la aplicación (para cambios importantes)</li>
+                <li>Anuncio en nuestro canal de WhatsApp</li>
+            </ul>
+
+            <p>Te recomendamos revisar esta política periódicamente para estar informado sobre cómo protegemos tu información.</p>
+        </div>
+
+        <!-- Servicios de terceros -->
+        <div class="content-section">
+            <h2>Enlaces a Políticas de Terceros</h2>
+            <p>Para información más detallada sobre cómo los servicios de terceros que utilizamos manejan tus datos:</p>
+            <ul>
+                <li><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--neon-blue);">Política de Privacidad de Google</a></li>
+                <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" style="color: var(--neon-blue);">Política de AdMob</a></li>
+                <li><a href="https://firebase.google.com/support/privacy" target="_blank" style="color: var(--neon-blue);">Política de Firebase</a></li>
+            </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="contact-box">
+            <h2>¿Preguntas o Inquietudes?</h2>
+            <p style="margin-bottom: 30px;">Si tienes alguna pregunta sobre esta política de privacidad, nuestras prácticas de datos, o deseas ejercer tus derechos, contáctanos:</p>
+            
+            <div class="contact-info">
+                <a href="mailto:evilcuystudios@gmail.com" class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>evilcuystudios@gmail.com</span>
+                </a>
+
+                <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank" class="contact-item">
+                    <span class="contact-icon">💬</span>
+                    <span>Canal de WhatsApp</span>
+                </a>
+
+                <a href="https://github.com/evilcuystudios" target="_blank" class="contact-item">
+                    <span class="contact-icon">💾</span>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 30px; color: #666; font-size: 0.85rem;">Nos comprometemos a responder todas las consultas en un plazo de 48 horas hábiles.</p>
+        </div>
+
+        <footer>
+            <div class="footer-logo">EN EL MORDER ESTÁ EL PODER</div>
+            <div class="footer-secret">.-/--</div>
+            <p style="margin-top: 20px; color: #444; font-size: 0.75rem;">
+                © 2024 Evil Cuy Studios | Procyon // Indie Dev Lab
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
