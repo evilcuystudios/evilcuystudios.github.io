@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte | EVIL CUY STUDIOS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --neon-red: #ff003c;
+            --neon-blue: #00f3ff;
+            --neon-green: #00ff41;
+            --neon-purple: #b026ff;
+            --neon-yellow: #ffea00;
+            --bg-dark: #050505;
+            --terminal-gray: #1a1a1a;
+            --card-bg: rgba(15, 15, 15, 0.7);
+        }
+
+        * { box-sizing: border-box; }
+
+        body { 
+            background: linear-gradient(to bottom, #000000, #0a0a0a);
+            color: #d1d1d1; 
+            font-family: 'Fira Code', monospace; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            z-index: 9;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.95; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid var(--terminal-gray);
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--neon-green);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--neon-blue);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header h2::before {
+            content: '>';
+            margin-right: 15px;
+            color: var(--neon-red);
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--neon-green) 0%, transparent 100%);
+            margin-left: 20px;
+        }
+
+        /* Support Cards */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .support-card {
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-gray);
+            padding: 30px;
+            text-decoration: none;
+            color: #999;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+        }
+
+        .support-card:hover {
+            border-color: var(--neon-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(176, 38, 255, 0.3);
+            color: #fff;
+        }
+
+        .support-icon {
+            font-size: 2.5rem;
+        }
+
+        .support-card h3 {
+            color: #eee;
+            font-size: 1.1rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .support-card p {
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .support-badge {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-gray);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--neon-blue);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question h3 {
+            color: var(--neon-blue);
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .faq-icon {
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 25px 30px;
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-left: 3px solid var(--neon-blue);
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .info-box h4 {
+            color: var(--neon-blue);
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-box p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .info-box li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .info-box li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid var(--terminal-gray);
+            text-align: center;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <h1>SOPORTE</h1>
+            <div class="subtitle">Centro de Ayuda & Asistencia Técnica</div>
+        </div>
+
+        <!-- Canales de Soporte -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Canales de Contacto</h2>
+            </div>
+            <div class="support-grid">
+                <a href="https://github.com/evilcuystudios/issues" target="_blank" class="support-card">
+                    <div class="support-icon">🐛</div>
+                    <h3>GitHub Issues</h3>
+                    <p>Reporta bugs, solicita features o consulta problemas técnicos directamente en el repositorio</p>
+                    <span class="support-badge">Respuesta: 24-48h</span>
+                </a>
+
+                <a href="https://whatsapp.com/channel/0029VbBYxOxJZg4BZNFbY40y" target="_blank" class="support-card">
+                    <div class="support-icon">💬</div>
+                    <h3>WhatsApp Channel</h3>
+                    <p>Canal oficial para anuncios, actualizaciones y consultas generales de la comunidad</p>
+                    <span class="support-badge">Tiempo Real</span>
+                </a>
+
+                <a href="mailto:contact@evilcuystudios.dev" class="support-card">
+                    <div class="support-icon">📧</div>
+                    <h3>Email Directo</h3>
+                    <p>Para consultas privadas, colaboraciones o asuntos comerciales específicos</p>
+                    <span class="support-badge">Respuesta: 2-5 días</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Preguntas Frecuentes</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Por qué mi antivirus detecta los .exe como malware?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Es un falso positivo común en aplicaciones zero-install y ejecutables sin firma digital certificada. Nuestras herramientas no contienen malware, spyware ni ningún código malicioso. Puedes verificar la integridad de los archivos comparando el hash SHA256 publicado en GitHub releases. Si tu antivirus bloquea el archivo, agrega una excepción en la configuración de seguridad.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Necesito Microsoft Office instalado para usar los convertidores?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No. Ese es el propósito principal de nuestras herramientas. Todos los convertidores (Word, Excel, PowerPoint a PDF) son completamente independientes y no requieren que tengas Microsoft Office instalado. Utilizan ingeniería inversa y manipulación directa de formatos OpenXML.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Las aplicaciones envían mis archivos a algún servidor?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No. Todas las conversiones se realizan 100% localmente en tu computadora. No hay conexión a internet, no se envían datos a servidores externos, y no recopilamos ningún tipo de información. Tus archivos nunca salen de tu equipo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo instalo las aplicaciones Android (.apk)?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            1. Descarga el archivo .apk desde GitHub releases<br>
+                            2. Ve a Ajustes > Seguridad > Orígenes desconocidos (o "Instalar apps desconocidas" en Android 8+)<br>
+                            3. Habilita la instalación para tu navegador o gestor de archivos<br>
+                            4. Abre el archivo .apk descargado<br>
+                            5. Confirma la instalación<br><br>
+                            Nota: Las apps no están en Google Play porque son proyectos indie independientes sin certificación comercial.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿El software es gratuito o de pago?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Todas las herramientas de Evil Cuy Studios son completamente gratuitas y de uso libre. No hay versiones premium, suscripciones ni compras dentro de las aplicaciones. El código fuente está disponible en GitHub bajo licencia open source.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Puedo usar estas herramientas comercialmente?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sí. Puedes usar nuestras herramientas para propósitos personales, educativos o comerciales sin restricciones. Sin embargo, no puedes redistribuir las aplicaciones como propias ni vender copias de nuestro software.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Aceptan donaciones o contribuciones?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Actualmente no tenemos un sistema de donaciones configurado. La mejor forma de apoyar el proyecto es:
+                            <br>• Dar estrella (⭐) al repositorio en GitHub
+                            <br>• Reportar bugs y sugerir mejoras
+                            <br>• Compartir las herramientas con otros que puedan necesitarlas
+                            <br>• Contribuir con código si tienes conocimientos técnicos
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Hay planes para versiones Mac o Linux?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Las herramientas .exe están desarrolladas en .NET Framework que es exclusivo de Windows. Para Mac/Linux necesitaríamos migrar a .NET Core/6+, lo cual está en nuestra lista de tareas futuras pero sin fecha definida. Las aplicaciones Android funcionan en cualquier dispositivo Android independientemente del sistema operativo de la computadora.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reporte de Bugs -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Reportar un Bug</h2>
+            </div>
+
+            <div class="info-box">
+                <h4>📝 Información Necesaria para el Reporte</h4>
+                <p>Para ayudarte más rápido, incluye lo siguiente al reportar un problema:</p>
+                <ul>
+                    <li>Nombre de la aplicación y versión exacta</li>
+                    <li>Sistema operativo y versión (ej: Windows 10 Build 19044)</li>
+                    <li>Descripción detallada del problema</li>
+                    <li>Pasos exactos para reproducir el error</li>
+                    <li>Mensaje de error si aparece alguno</li>
+                    <li>Tipo y tamaño del archivo que causó el problema</li>
+                    <li>Capturas de pantalla si son relevantes</li>
+                </ul>
+            </div>
+
+            <p style="color: #999; text-align: center; font-size: 0.9rem; margin-top: 30px;">
+                Los reportes de bugs bien documentados nos ayudan a resolver problemas mucho más rápido. Agradecemos tu colaboración en hacer el software más estable.
+            </p>
+        </section>
+
+        <footer>
+            <div class="copyright">
+                © 2024 EVIL CUY STUDIOS | Procyon // Centro de Soporte
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Cerrar todos los FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Abrir el clickeado si no estaba activo
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
